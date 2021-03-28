@@ -42,9 +42,9 @@ const catPaw = L.icon({
   iconUrl: CatPaw,
 
 
-  iconSize: [25, 25], // size of the icon
+  iconSize: [26, 26], // size of the icon
   shadowSize: [50, 64], // size of the shadow
-  iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+  iconAnchor: [13, 26], // point of the icon which will correspond to marker's location
   shadowAnchor: [4, 62],  // the same for the shadow
   popupAnchor: [-3, -75] // point from which the popup should open relative to the iconAnchor
 });
@@ -59,15 +59,16 @@ const Markers = () => {
 
 const App = () => {
 
-  const [center, setCenter] = useState({ lat: 52.1544363, lng: 20.9860718 });
-  const ZOOM_LEVEL = 9;
+  const [center, setCenter] = useState({ lat: cords[0].lat, lng: cords[0].lng });
+
   const mapRef = useRef();
 
   return (
-    <div style={{ width: 1200, height: "100%" }}>
+    <div style={{ width: '100%', height: "100%" }}>
       <MapContainer
         center={center}
-        zoom={ZOOM_LEVEL}
+        zoom={13}
+        scrollWheelZoom={false}
         ref={mapRef}
       >
         <TileLayer
