@@ -1,85 +1,146 @@
-import React, { useRef, useState } from 'react';
-import { TileLayer, MapContainer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-
-import osm from './osm-providers'
-import "leaflet/dist/leaflet.css"
-import CatPaw from './icons/pawprint.png'
-
-const cords = [
-  {
-    id: 1,
-    time: '11.48.55',
-    lat: 52.20477,
-    lng: 21.06587,
-  },
-  {
-    id: 2,
-    time: '16.49.55',
-    lat: 52.20081,
-    lng: 21.06703,
-  },
-  {
-    id: 3,
-    time: '16.48.55',
-    lat: 52.20387,
-    lng: 21.06833,
-  },
-  {
-    id: 4,
-    time: '16.38.55',
-    lat: 52.20216,
-    lng: 21.05907,
-  }
-]
-
-// const markerIcon = L.Icon({
-//   iconUrl: "./icons/pawprint.png",
-//   iconSize: [10, 10],
-// })
-
-const catPaw = L.icon({
-  iconUrl: CatPaw,
+import React from 'react';
 
 
-  iconSize: [26, 26], // size of the icon
-  shadowSize: [50, 64], // size of the shadow
-  iconAnchor: [13, 26], // point of the icon which will correspond to marker's location
-  shadowAnchor: [4, 62],  // the same for the shadow
-  popupAnchor: [-3, -75] // point from which the popup should open relative to the iconAnchor
-});
+import MapComponent from './components/MapComponent'
 
-const Markers = () => {
-  return (
-    cords.map(item => <Marker position={[item.lat, item.lng]} icon={catPaw} key={item.id} ><Popup>
-      Kot był tutaj o godzinie {item.time}
-    </Popup></Marker>)
-  )
-}
+import Navigation from "./components/Navigation";
+import Header from './components/Header';
+import Features from './components/Features';
 
 const App = () => {
 
-  const [center, setCenter] = useState({ lat: cords[0].lat, lng: cords[0].lng });
-
-  const mapRef = useRef();
-
   return (
-    <div style={{ width: '100%', height: "100%" }}>
-      <MapContainer
-        center={center}
-        zoom={13}
-        scrollWheelZoom={false}
-        ref={mapRef}
-      >
-        <TileLayer
-          url={osm.maptiler.url}
-          attribution={osm.maptiler.attribution}
-        />
+    <div>
 
+      <Navigation />
+      <Header />
+      <Features />
+      <MapComponent />
 
-        <Markers />
-      </MapContainer>
-
+      {/* <!-- Team--> */}
+      <section className="page-section bg-light" id="team">
+        <div className="container">
+          <div className="text-center">
+            <h2 className="section-heading text-uppercase">Our Amazing Team</h2>
+            <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+          </div>
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="team-member">
+                <img className="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                <h4>Kay Garland</h4>
+                <p className="text-muted">Lead Designer</p>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-twitter"></i></a>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-facebook-f"></i></a>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="team-member">
+                <img className="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                <h4>Larry Parker</h4>
+                <p className="text-muted">Lead Marketer</p>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-twitter"></i></a>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-facebook-f"></i></a>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="team-member">
+                <img className="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                <h4>Diana Petersen</h4>
+                <p className="text-muted">Lead Developer</p>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-twitter"></i></a>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-facebook-f"></i></a>
+                <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-8 mx-auto text-center"><p className="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+          </div>
+        </div>
+      </section>
+      {/* <!-- Clients--> */}
+      <div className="py-5">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-md-3 col-sm-6 my-3">
+              <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/microsoft.svg" alt="..." /></a>
+            </div>
+            <div className="col-md-3 col-sm-6 my-3">
+              <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/google.svg" alt="..." /></a>
+            </div>
+            <div className="col-md-3 col-sm-6 my-3">
+              <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/facebook.svg" alt="..." /></a>
+            </div>
+            <div className="col-md-3 col-sm-6 my-3">
+              <a href="#!"><img className="img-fluid img-brand d-block mx-auto" src="assets/img/logos/ibm.svg" alt="..." /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <!-- Contact--> */}
+      <section className="page-section" id="contact">
+        <div className="container">
+          <div className="text-center">
+            <h2 className="section-heading text-uppercase">Contact Us</h2>
+            <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+          </div>
+          <form id="contactForm" name="sentMessage" novalidate="novalidate">
+            <div className="row align-items-stretch mb-5">
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input className="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." />
+                  <p className="help-block text-danger"></p>
+                </div>
+                <div className="form-group">
+                  <input className="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." />
+                  <p className="help-block text-danger"></p>
+                </div>
+                <div className="form-group mb-md-0">
+                  <input className="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
+                  <p className="help-block text-danger"></p>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group form-group-textarea mb-md-0">
+                  <textarea className="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                  <p className="help-block text-danger"></p>
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+              <div id="success"></div>
+              <button className="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      {/* <!-- Footer--> */}
+      <footer className="footer py-4">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-4 text-lg-left">
+              Copyright &copy; Your Website
+                        {/* <!-- This script automatically adds the current year to your website footer-->
+                        <!-- (credit: https://updateyourfooter.com/)--> */}
+              <script>
+                document.write(new Date().getFullYear());
+                        </script>
+            </div>
+            <div className="col-lg-4 my-3 my-lg-0">
+              <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-twitter"></i></a>
+              <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-facebook-f"></i></a>
+              <a className="btn btn-dark btn-social mx-2" href="#!"><i className="fa fa-linkedin-in"></i></a>
+            </div>
+            <div className="col-lg-4 text-lg-right">
+              <a className="mr-3" href="#!">Privacy Policy</a>
+              <a href="#!">Terms of Use</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div >
   );
 };
