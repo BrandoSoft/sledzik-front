@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Footer } from '../../components/footer/footer';
+import MapComponent from '../../components/MapComponent';
+import { Marginer } from '../../components/marginer';
 import { Navbar } from '../../components/navbar/navbar';
 import { InnerPageContainer, PageContainer } from '../../components/PageContainer'
 import { deviceSize } from '../../components/responsive/responsive';
+import { SpecialistAdd } from '../../components/specialistAdd/specialistAdd';
 import { Services } from './services';
 import { TopSection } from './topSection';
 
@@ -17,6 +21,7 @@ max-width: ${deviceSize.laptop}px;
 display: flex;
 flex-direction: column;
 align-items: flex-start;
+padding: 1em;
 `;
 
 
@@ -24,15 +29,19 @@ align-items: flex-start;
 
 export function HomePage(props) {
     return (
-        < PageContainer >
-            <TopSection>
-                <Navbar/>
-            </TopSection>
-            <InnerPageContainer>
-                <ContentContainer>
-                <Services/>
-                </ContentContainer>
-            </InnerPageContainer>
-        </PageContainer >
+< PageContainer >
+    <TopSection>
+        <Navbar/>
+    </TopSection>
+    <InnerPageContainer>
+        <MapComponent/>
+        <ContentContainer>
+            <Services/>
+        </ContentContainer>
+        <Marginer direction="vertical" margin="4em"/>
+        <SpecialistAdd/>
+    </InnerPageContainer>
+    <Footer/>
+</PageContainer >
     )
 }

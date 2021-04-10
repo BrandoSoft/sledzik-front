@@ -91,7 +91,7 @@ const PriceText = styled.div`
 
 
 export function ServiceCard(props){
-    const {thumbnailUrl, specialist, title, rating} = props;
+    const {thumbnailUrl, specialist, title, rate, rating} = props;
 return(
     <CardContainer>
         <TopContainer>
@@ -111,7 +111,7 @@ return(
             </RatingContainer>
             <PriceContainer>
                 <StartingAtText>  Starting At </StartingAtText>
-                <PriceText>${rating}/hr</PriceText>
+                <PriceText>${rate}/hr</PriceText>
             </PriceContainer>
         </BottomContainer>
     </CardContainer>

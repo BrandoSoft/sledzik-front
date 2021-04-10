@@ -29,14 +29,14 @@ const LogoTitle = styled.h2`
 
 
 export function BrandLogo(props) {
-    const { logoSize, textSize, marginLeft } = props;
+    const { logoSize, textSize, marginLeft, color } = props;
 
     return (
         <BrandLogoContainer marginLeft={marginLeft}>
             <LogoImage size={logoSize}>
                 <img src={CatPaw} alt="Cat Paw Logo" />
             </LogoImage>
-            <LogoTitle size={textSize}>
+            <LogoTitle size={textSize} color={color}>
                 Śledzik Kota
             </LogoTitle>
         </BrandLogoContainer>
