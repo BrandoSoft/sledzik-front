@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import CatPaw from '../../images/catPawLogo.png'
-
+import CatPaw from "../../images/catPawLogo.png";
 
 const BrandLogoContainer = styled.div`
-display: flex;
-align-items: center;
-margin-left:  ${({ marginLeft }) => (marginLeft ? marginLeft + "px" : "30px")};
+  display: flex;
+  align-items: center;
+  margin-left: ${({ marginLeft }) => (marginLeft ? marginLeft + "px" : "30px")};
 `;
 
 const LogoImage = styled.div`
@@ -27,18 +27,23 @@ const LogoTitle = styled.h2`
   margin-left: 6px;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 export function BrandLogo(props) {
-    const { logoSize, textSize, marginLeft, color } = props;
+  const { logoSize, textSize, marginLeft, color } = props;
 
-    return (
-        <BrandLogoContainer marginLeft={marginLeft}>
-            <LogoImage size={logoSize}>
-                <img src={CatPaw} alt="Cat Paw Logo" />
-            </LogoImage>
-            <LogoTitle size={textSize} color={color}>
-                Śledzik Kota
-            </LogoTitle>
-        </BrandLogoContainer>
-    )
+  return (
+    <StyledLink to="/">
+      <BrandLogoContainer marginLeft={marginLeft}>
+        <LogoImage size={logoSize}>
+          <img src={CatPaw} alt="Cat Paw Logo" />
+        </LogoImage>
+        <LogoTitle size={textSize} color={color}>
+          Śledzik Kota
+        </LogoTitle>
+      </BrandLogoContainer>
+    </StyledLink>
+  );
 }
