@@ -48,7 +48,7 @@ export function Navbar(props) {
     <NavbarContainer useTransparent={useTransparent}>
       <BrandLogo />
       <AccessibilityContainer>
-        <AnchorLink>Śledzenie Kota</AnchorLink>
+        <AnchorLink to="#">Śledzenie Kota</AnchorLink>
         <Marginer direction="horizontal" margin={10} />
         <Separator />
         <Marginer direction="horizontal" margin={10} />
