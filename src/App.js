@@ -7,6 +7,7 @@ import { HomePage } from "./containers/HomePage";
 const App = () => {
   return (
     <div>
+      <HomePage />
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
