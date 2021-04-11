@@ -1,14 +1,15 @@
-import React from 'react';
-import styled from 'styled-components'
-import { BrandLogo } from '../brandLogo';
+import React from "react";
+import styled from "styled-components";
+import { BrandLogo } from "../brandLogo";
+
+import { useMediaQuery } from "react-responsive";
+import { deviceSize } from "../../components/responsive/responsive";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
-
-
 const FooterContainer = styled.div`
-margin-top: 20px;
+  margin-top: 20px;
   width: 100%;
   min-height: 300px;
   display: flex;
@@ -17,7 +18,10 @@ margin-top: 20px;
   padding: 2em 3em;
   padding-bottom: 0;
   border-top: 0.6px solid rgb(0, 0, 0, 0.3);
-  
+
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    padding: 1em 1.5em;
+  }
 `;
 
 const TopContainer = styled.div`
@@ -25,7 +29,6 @@ const TopContainer = styled.div`
   display: flex;
   margin-bottom: 1em;
 `;
-
 
 const ContentContainer = styled.div`
   display: flex;
@@ -36,7 +39,6 @@ const ContentContainer = styled.div`
   }
 `;
 
-
 const BottomContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -44,7 +46,6 @@ const BottomContainer = styled.div`
   height: 70px;
   border-top: 0.6px solid rgb(0, 0, 0, 0.3);
   padding: 0 10px;
- 
 `;
 
 const RightBottomContainer = styled.div`
@@ -82,7 +83,6 @@ const PrivacyText = styled.h6`
   display: flex;
   margin-top: 5px;
   align-items: center;
-  
 `;
 
 const SocialIcon = styled.div`
@@ -96,44 +96,47 @@ const SocialIcon = styled.div`
   &:hover {
     color: #777777;
   }
-  
 `;
 
-
 export function Footer(props) {
-return(
+  const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
+  return (
     <FooterContainer>
-        <TopContainer>
-            <ContentContainer>
-                <Title>Kategorie</Title>
-                <FLink>Home</FLink>
-                <FLink>Kup na allegro</FLink>
-                <FLink>Dowiedz się więcej</FLink>
-                <FLink>F.A.Q.</FLink>
-            </ContentContainer>
-            <ContentContainer>
-                <Title>Moje konto</Title>
-                <FLink>Logowanie</FLink>
-                <FLink>HujeMuje</FLink>
-                <FLink>Rude</FLink>
-                <FLink>Węże</FLink>
-            </ContentContainer>
-        </TopContainer>
-        <BottomContainer>
-            <LeftBottomContainer>
-                <BrandLogo logoSize={20} textSize={15} color={'#326295'}/>
-                <PrivacyText> &#169; All Rights Reserved. 2021</PrivacyText>
-            </LeftBottomContainer>
-            <RightBottomContainer>
-            <SocialIcon>
+      <TopContainer>
+        <ContentContainer>
+          <Title>Kategorie</Title>
+          <FLink>Home</FLink>
+          <FLink>Kup na allegro</FLink>
+          <FLink>Dowiedz się więcej</FLink>
+          <FLink>F.A.Q.</FLink>
+        </ContentContainer>
+        <ContentContainer>
+          <Title>Moje konto</Title>
+          <FLink>Logowanie</FLink>
+          <FLink>HujeMuje</FLink>
+          <FLink>Rude</FLink>
+          <FLink>Węże</FLink>
+        </ContentContainer>
+      </TopContainer>
+      <BottomContainer>
+        <LeftBottomContainer>
+          <BrandLogo
+            logoSize={20}
+            textSize={15}
+            color={"#326295"}
+            marginLeft={isMobile}
+          />
+          <PrivacyText> &#169; All Rights Reserved. 2021</PrivacyText>
+        </LeftBottomContainer>
+        <RightBottomContainer>
+          <SocialIcon>
             <FontAwesomeIcon icon={faFacebook} />
           </SocialIcon>
           <SocialIcon>
             <FontAwesomeIcon icon={faTwitter} />
           </SocialIcon>
-            </RightBottomContainer>
-        </BottomContainer>
+        </RightBottomContainer>
+      </BottomContainer>
     </FooterContainer>
-)
-
-};
+  );
+}

@@ -15,6 +15,11 @@ const TopSectionContainer = styled.div`
   background: url(${TopSectionBackgroundImage}) no-repeat;
   background-position: 0 -150px;
   background-size: cover;
+
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    background-position: -900px 0;
+    background-size: auto;
+  }
 `;
 
 const TopSectionInnerContainer = styled.div`
@@ -75,15 +80,25 @@ export function TopSection(props) {
         {children}
         <TopSectionInnerContainer>
           <LogoContainer>
-            <BrandLogo logoSize={100} textSize={60} marginLeft={200} />
-            <SloganText marginLeft={310}>Odkryj nocne ścieżki</SloganText>
-            <SloganText marginLeft={310}>Twojego kota.</SloganText>
+            <BrandLogo
+              logoSize={isMobile ? 50 : 100}
+              textSize={isMobile ? 45 : 60}
+              marginLeft={isMobile ? 30 : 200}
+            />
+            <SloganText marginLeft={isMobile ? 80 : 310}>
+              Odkryj nocne ścieżki
+            </SloganText>
+            <SloganText marginLeft={isMobile ? 80 : 310}>
+              Twojego kota.
+            </SloganText>
             <Marginer direction="vertical" margin={60} />
-            <Button marginLeft={280}>CHCĘ ŚLEDZIĆ!</Button>
+            <Button marginLeft={isMobile ? 60 : 280}>CHCĘ ŚLEDZIĆ!</Button>
           </LogoContainer>
-          <StandoutImage>
-            <img src={CatComputer} alt="Cat Computer Logo" />
-          </StandoutImage>
+          {!isMobile && (
+            <StandoutImage>
+              <img src={CatComputer} alt="Cat Computer Logo" />
+            </StandoutImage>
+          )}
         </TopSectionInnerContainer>
       </BackgroundFilter>
     </TopSectionContainer>

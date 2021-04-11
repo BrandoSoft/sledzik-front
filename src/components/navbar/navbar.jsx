@@ -5,6 +5,9 @@ import { BrandLogo } from "../brandLogo";
 import { Button } from "../button/button";
 import { Marginer } from "../marginer";
 
+import { useMediaQuery } from "react-responsive";
+import { deviceSize } from "../../components/responsive/responsive";
+
 const NavbarContainer = styled.div`
   display: flex;
   width: 100%;
@@ -44,16 +47,22 @@ const Separator = styled.div`
 export function Navbar(props) {
   const { useTransparent } = props;
 
+  const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
+
   return (
     <NavbarContainer useTransparent={useTransparent}>
-      <BrandLogo />
+      <BrandLogo
+        logoSize={isMobile ? 30 : 40}
+        textSize={isMobile ? 15 : "2em"}
+        marginLeft={isMobile ? 5 : 30}
+      />
       <AccessibilityContainer>
-        <AnchorLink to="#">Śledzenie Kota</AnchorLink>
+        {!isMobile && <AnchorLink to="#">Śledzenie Kota</AnchorLink>}
         <Marginer direction="horizontal" margin={10} />
-        <Separator />
+        {!isMobile && <Separator />}
         <Marginer direction="horizontal" margin={10} />
         <Link to="customer/access/signup">
-          <Button size={15} marginLeft={10} width={120}>
+          <Button size={15} marginLeft={isMobile ? 1 : 10} width={120}>
             Rejestracja
           </Button>
         </Link>

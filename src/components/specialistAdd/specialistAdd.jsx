@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-import {BrandLogo} from '../brandLogo';
+import { useMediaQuery } from "react-responsive";
+import { deviceSize } from "../../components/responsive/responsive";
+
+import { BrandLogo } from "../brandLogo";
 import { Marginer } from "../marginer";
 
-import CatCompImage from '../../images/CatLogo.png';
-import { Button } from '../button/button';
-
+import CatCompImage from "../../images/CatLogo.png";
+import { Button } from "../button/button";
 
 const SpecialistAdContainer = styled.div`
   width: 100%;
@@ -22,7 +24,6 @@ const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
- 
 `;
 
 const SloganContainer = styled.div`
@@ -31,7 +32,9 @@ const SloganContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   margin-right: 5em;
-  
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    margin-right: 0;
+  }
 `;
 
 const Slogan = styled.h2`
@@ -41,7 +44,10 @@ const Slogan = styled.h2`
   font-weight: 700;
   line-height: 1.3;
   text-align: start;
- 
+
+  @media screen and (max-width: ${deviceSize.mobile}px) {
+    font-size: 18px;
+  }
 `;
 
 const StandoutImage = styled.div`
@@ -51,31 +57,35 @@ const StandoutImage = styled.div`
     width: 100%;
     height: 100%;
   }
-  
 `;
 
+export function SpecialistAdd(props) {
+  const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
 
-export function SpecialistAdd(props){
-return(
+  return (
     <SpecialistAdContainer>
       <ContentContainer>
         <SloganContainer>
-          <BrandLogo logoSize={60} textSize={55} marginLeft={-80} />
-          <Marginer direction="vertical" margin="1em"/>
+          <BrandLogo
+            logoSize={isMobile ? 60 : 60}
+            textSize={isMobile ? 25 : 55}
+            marginLeft={isMobile ? -20 : -80}
+          />
+          <Marginer direction="vertical" margin="1em" />
           <SloganContainer>
             <Slogan>Dzięki nam wiesz, czy Twój</Slogan>
             <Slogan>KOT spędza więcej czasu</Slogan>
             <Slogan>u somsiada niż w DOMU!</Slogan>
           </SloganContainer>
-          <Marginer direction="vertical" margin={40}/>
+          <Marginer direction="vertical" margin={40} />
           <Button marginLeft={-20}>CHCĘ WIEDZIEĆ!</Button>
         </SloganContainer>
+        {!isMobile && (
           <StandoutImage>
-            <img src={CatCompImage} alt="Cat Service Logo"/>
+            <img src={CatCompImage} alt="Cat Service Logo" />
           </StandoutImage>
+        )}
       </ContentContainer>
     </SpecialistAdContainer>
-)
-
+  );
 }
-
