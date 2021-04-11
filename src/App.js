@@ -9,7 +9,11 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          <Route path="/" exact component={HomePage} />
+          <Route
+            path="http://BrandoSoft.github.io/sledzik-front/"
+            exact
+            component={HomePage}
+          />
           <Route
             path="/customer/access/:action"
             exact
