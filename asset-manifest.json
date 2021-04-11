@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sledzik-front/static/css/main.e4dc3674.chunk.css",
-    "main.js": "/sledzik-front/static/js/main.8b75ff92.chunk.js",
-    "main.js.map": "/sledzik-front/static/js/main.8b75ff92.chunk.js.map",
+    "main.js": "/sledzik-front/static/js/main.4239d4cd.chunk.js",
+    "main.js.map": "/sledzik-front/static/js/main.4239d4cd.chunk.js.map",
     "runtime-main.js": "/sledzik-front/static/js/runtime-main.726134f1.js",
     "runtime-main.js.map": "/sledzik-front/static/js/runtime-main.726134f1.js.map",
     "static/css/2.b4ebbe46.chunk.css": "/sledzik-front/static/css/2.b4ebbe46.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.b4ebbe46.chunk.css",
     "static/js/2.918e4513.chunk.js",
     "static/css/main.e4dc3674.chunk.css",
-    "static/js/main.8b75ff92.chunk.js"
+    "static/js/main.4239d4cd.chunk.js"
   ]
 }
