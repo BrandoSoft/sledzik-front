@@ -8,14 +8,12 @@ const App = () => {
   return (
     <div>
       <Router>
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route
-            path="/customer/access/:action"
-            exact
-            component={CustomerAccessPage}
-          />
-        </Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route
+          path="/customer/access/:action"
+          exact
+          component={CustomerAccessPage}
+        />
       </Router>
     </div>
   );
