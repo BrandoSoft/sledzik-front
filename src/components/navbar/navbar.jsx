@@ -57,17 +57,17 @@ export function Navbar(props) {
         marginLeft={isMobile ? 5 : 30}
       />
       <AccessibilityContainer>
-        {!isMobile && <AnchorLink to="#">Śledzenie Kota</AnchorLink>}
+        {!isMobile && <AnchorLink to="/">Śledzenie Kota</AnchorLink>}
         <Marginer direction="horizontal" margin={10} />
         {!isMobile && <Separator />}
         <Marginer direction="horizontal" margin={10} />
-        <Link to="customer/access/signup">
+        <Link to="/customer/access/signup">
           <Button size={15} marginLeft={isMobile ? 1 : 10} width={120}>
             Rejestracja
           </Button>
         </Link>
         <Marginer direction="horizontal" margin={20} />
-        <AnchorLink to="customer/access/signin">Logowanie</AnchorLink>
+        <AnchorLink to="/customer/access/signin">Logowanie</AnchorLink>
         <Marginer direction="horizontal" margin={20} />
       </AccessibilityContainer>
     </NavbarContainer>
