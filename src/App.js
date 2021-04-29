@@ -7,7 +7,7 @@ import { HomePage } from "./containers/HomePage";
 const App = () => {
   return (
     <div>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route
