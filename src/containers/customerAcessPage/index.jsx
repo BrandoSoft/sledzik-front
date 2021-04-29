@@ -17,7 +17,7 @@ const StyledInnerContainer = styled(InnerPageContainer)`
 export function CustomerAccessPage(props) {
   const { action } = useParams();
 
-  //   const [activePage, setActivePage] = useState(initialState);
+  // const [activePage, setActivePage] = useState(initialState);
 
   return (
     <PageContainer>
