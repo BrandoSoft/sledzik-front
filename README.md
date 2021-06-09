@@ -2,8 +2,7 @@
 
 Frontend in REACT to my app "Śledzik Kota"!!
 
-doing some stuff
+React
+Styled Components
 
-Wonder why i see readme instead of my app...
-
-test1
+## Live: https://brandosoft.github.io/sledzik-front/
