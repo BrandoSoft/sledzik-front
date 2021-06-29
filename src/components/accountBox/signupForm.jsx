@@ -21,7 +21,7 @@ export function SignupForm(props) {
     pwd: "",
   });
 
-  function loginHandler(e) {
+  function registerHandler(e) {
     e.preventDefault();
 
     axios
@@ -33,19 +33,6 @@ export function SignupForm(props) {
       .then((res) => {
         console.log(res);
       });
-
-    // axios
-    //   .post("localhost:3000/user/register", {
-    //     name: data.name,
-    //     email: data.email,
-    //     pwd: data.pwd,
-    //   })
-
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
-    // axios.get("http://localhost:3000/user/message");
   }
 
   function onChangeHandler(e) {
@@ -82,14 +69,14 @@ export function SignupForm(props) {
         <Input type="password" placeholder="Confirm Password" />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
-      <SubmitButton type="submit" onClick={(e) => loginHandler(e)}>
-        Signup
+      <SubmitButton type="submit" onClick={(e) => registerHandler(e)}>
+        Zarejestruj
       </SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
-        Already have an account?
+        Posiadasz już konto?
         <BoldLink href="#" onClick={switchToSignin}>
-          Signin
+          Zaloguj
         </BoldLink>
       </MutedLink>
     </BoxContainer>

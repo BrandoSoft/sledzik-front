@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   BoldLink,
   BoxContainer,
@@ -9,25 +9,98 @@ import {
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
+import axios from "axios";
+import {AppContext} from "../../AppContext";
 
 export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
 
+  const apiUrl = "http://localhost:3000/auth/login";
+
+  const [data, setData] = useState({
+    email: "",
+    pwd: "",
+  });
+
+  const onChangeHandler = (e) => {
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
+    setData(newData);
+  };
+
+  const {userLoginHandler,userNameHandler,} = useContext(AppContext)
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+
+
+    axios
+      .post(apiUrl, {
+        email: data.email,
+        pwd: data.pwd,
+      })
+      .then((res) => {
+        if(res.data){
+        setData({
+        email: '',
+        pwd:''})
+        // console.log( 'w then')
+        // console.log(res.data)
+        // responseFromLogin = res.data;
+        // console.log( 'po zapisaniu')
+        // console.log(responseFromLogin)
+        const {ok, userName} = res.data
+        // userLoginHandler(true);
+        console.log('teraz2 ok')
+        console.log(ok)
+        console.log('teraz3 un')
+        console.log(userName)
+        userLoginHandler(ok);
+        userNameHandler(userName)
+       }
+      });
+  };
+
+  // const logoutHandler = (e) => {
+  //   e.preventDefault();
+  //
+  //   axios.get("http://localhost:3000/auth/logout").then((res) => {
+  //     console.log(res);
+  //   });
+  // };
+
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
+        <Input
+          type="email"
+          onChange={(e) => onChangeHandler(e)}
+          id="email"
+          value={data.email}
+          placeholder="Email"
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => onChangeHandler(e)}
+          id="pwd"
+          value={data.pwd}
+        />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <MutedLink href="#">Forget your password?</MutedLink>
       <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit">Signin</SubmitButton>
+      <SubmitButton type="submit" onClick={(e) => loginHandler(e)}>
+        Zaloguj
+      </SubmitButton>
+      {/*<SubmitButton type="submit" onClick={(e) => logoutHandler(e)}>*/}
+      {/*  Wyloguj*/}
+      {/*</SubmitButton>*/}
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
-        Don't have an accoun?{" "}
+        Nie posiadasz konta?{" "}
         <BoldLink href="#" onClick={switchToSignup}>
-          Signup
+          Zarejestruj
         </BoldLink>
       </MutedLink>
     </BoxContainer>

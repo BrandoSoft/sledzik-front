@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BrandLogo } from "../brandLogo";
@@ -7,6 +7,8 @@ import { Marginer } from "../marginer";
 
 import { useMediaQuery } from "react-responsive";
 import { deviceSize } from "../../components/responsive/responsive";
+import {AppContext} from "../../AppContext";
+import axios from "axios";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -49,14 +51,43 @@ export function Navbar(props) {
 
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
 
+
+
+const {isUserLogged, logedUserName, userLoginHandler} = useContext(AppContext)
+console.log('nawbar pokazuje: ' + logedUserName)
+
+const logoutHandler= () =>{
+    axios.get("http://localhost:3000/auth/logout").then((res) => {
+      console.log(res);
+    });
+    userLoginHandler(false)
+}
+
   return (
+
     <NavbarContainer useTransparent={useTransparent}>
       <BrandLogo
         logoSize={isMobile ? 30 : 40}
         textSize={isMobile ? 15 : "2em"}
         marginLeft={isMobile ? 5 : 30}
       />
-      <AccessibilityContainer>
+      {isUserLogged?
+       <AccessibilityContainer>
+        {!isMobile && <AnchorLink to="/">Witaj {logedUserName}</AnchorLink>}
+        <Marginer direction="horizontal" margin={10} />
+        {!isMobile && <Separator />}
+        <Marginer direction="horizontal" margin={10} />
+        <Link to="/customer/access/signup">
+          <Button size={15} marginLeft={isMobile ? 1 : 10} width={120}>
+            Ustawienia
+          </Button>
+        </Link>
+        <Marginer direction="horizontal" margin={20} />
+        <AnchorLink to="/" onClick={(e) => logoutHandler()}>Wyloguj</AnchorLink>
+        <Marginer direction="horizontal" margin={20} />
+      </AccessibilityContainer>
+             :
+       <AccessibilityContainer>
         {!isMobile && <AnchorLink to="/">Śledzenie Kota</AnchorLink>}
         <Marginer direction="horizontal" margin={10} />
         {!isMobile && <Separator />}
@@ -70,6 +101,7 @@ export function Navbar(props) {
         <AnchorLink to="/customer/access/signin">Logowanie</AnchorLink>
         <Marginer direction="horizontal" margin={20} />
       </AccessibilityContainer>
+      }
     </NavbarContainer>
   );
 }
