@@ -36,8 +36,8 @@ export function SignupForm(props) {
         email: data.email,
         pwd: data.pwd,
       })
-      .then((res) => {
-        console.log('sucess');
+      .then(() => {
+        console.log('needd to validate and work on this a bit more');
         switchToSignin()
       });
 
