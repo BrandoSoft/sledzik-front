@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   BoldLink,
   BoxContainer,
@@ -11,15 +12,20 @@ import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import axios from "axios";
 
+
+
+
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
 
+  let history = useHistory()
   const apiUrl = "http://localhost:3000/user/register";
   const [data, setData] = useState({
     name: "",
     email: "",
     pwd: "",
   });
+
 
   function registerHandler(e) {
     e.preventDefault();
@@ -31,15 +37,18 @@ export function SignupForm(props) {
         pwd: data.pwd,
       })
       .then((res) => {
-        console.log(res);
+        console.log('sucess');
+        switchToSignin()
       });
+
+    // history.push('/customer/access/signin')
   }
 
   function onChangeHandler(e) {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
-    console.log(newData);
+
   }
 
   return (

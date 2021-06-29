@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   BoldLink,
   BoxContainer,
@@ -13,6 +14,8 @@ import axios from "axios";
 import {AppContext} from "../../AppContext";
 
 export function LoginForm(props) {
+
+  let history = useHistory()
   const { switchToSignup } = useContext(AccountContext);
 
   const apiUrl = "http://localhost:3000/auth/login";
@@ -29,7 +32,7 @@ export function LoginForm(props) {
   };
 
   const {userLoginHandler,userNameHandler,} = useContext(AppContext)
-
+  const [wrongPassMessage, setWrongPassMessage] = useState(false)
   const loginHandler = (e) => {
     e.preventDefault();
 
@@ -49,14 +52,26 @@ export function LoginForm(props) {
         // responseFromLogin = res.data;
         // console.log( 'po zapisaniu')
         // console.log(responseFromLogin)
-        const {ok, userName} = res.data
-        // userLoginHandler(true);
-        console.log('teraz2 ok')
-        console.log(ok)
-        console.log('teraz3 un')
-        console.log(userName)
-        userLoginHandler(ok);
-        userNameHandler(userName)
+
+
+         if(res.data.error === "Invalid login data!"){
+             setWrongPassMessage(true)}
+         else if(res.data.ok){
+             const {ok, userName} = res.data
+             userLoginHandler(ok);
+             userNameHandler(userName)
+
+             history.push('/usersettings')
+         }
+
+        //  console.log('res data to')
+        // console.log(res)
+        // console.log('teraz2 ok')
+        // console.log(ok)
+        // console.log('teraz3 un')
+        // console.log(userName)
+
+
        }
       });
   };
@@ -71,6 +86,8 @@ export function LoginForm(props) {
 
   return (
     <BoxContainer>
+    {!wrongPassMessage? '' : 'Email lub hasło nieprawidłowe. Spróbuj jeszcze raz'}
+      <Marginer direction="horizonstal" margin="1.6em" />
       <FormContainer>
         <Input
           type="email"
