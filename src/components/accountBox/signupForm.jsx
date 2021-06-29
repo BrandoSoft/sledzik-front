@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 import {
   BoldLink,
   BoxContainer,
@@ -15,10 +14,10 @@ import axios from "axios";
 
 
 
-export function SignupForm(props) {
+export function SignupForm() {
   const { switchToSignin } = useContext(AccountContext);
 
-  let history = useHistory()
+
   const apiUrl = "http://localhost:3000/user/register";
   const [data, setData] = useState({
     name: "",
@@ -41,7 +40,6 @@ export function SignupForm(props) {
         switchToSignin()
       });
 
-    // history.push('/customer/access/signin')
   }
 
   function onChangeHandler(e) {

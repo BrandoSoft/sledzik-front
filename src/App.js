@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { CustomerAccessPage } from "./containers/customerAcessPage";
 import { HomePage } from "./containers/HomePage";
+import { UserPage } from "./containers/UserPage/UserPage";
 import AppProvider from "./AppContext";
 
 
@@ -18,6 +19,11 @@ const App = () => {
               path="/customer/access/:action"
               exact
               component={CustomerAccessPage}
+            />
+            <Route
+              path="/usersettings"
+              exact
+              component={UserPage}
             />
           </Switch>
         </Router>

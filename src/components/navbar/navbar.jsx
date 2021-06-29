@@ -77,7 +77,7 @@ const logoutHandler= () =>{
         <Marginer direction="horizontal" margin={10} />
         {!isMobile && <Separator />}
         <Marginer direction="horizontal" margin={10} />
-        <Link to="/customer/access/signup">
+        <Link to="/usersettings">
           <Button size={15} marginLeft={isMobile ? 1 : 10} width={120}>
             Ustawienia
           </Button>
