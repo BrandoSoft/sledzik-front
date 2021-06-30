@@ -54,7 +54,7 @@ export function Navbar(props) {
 
 
 const {isUserLogged, logedUserName, userLoginHandler} = useContext(AppContext)
-console.log('nawbar pokazuje: ' + logedUserName)
+
 
 const logoutHandler= () =>{
     axios.get("http://localhost:3000/auth/logout").then((res) => {

@@ -6,7 +6,7 @@ export const AppContext = createContext();
 const AppProvider = ({children}) =>{
 
     const [isUserLogged, setIsUserLogged] = useState(false);
-    const [logedUserName, setLogedUserName ] = useState('zenek')
+    const [logedUserName, setLogedUserName ] = useState('test2')
 
     const userLoginHandler = (value) => setIsUserLogged(value);
     const userNameHandler = (name) => setLogedUserName(name);
