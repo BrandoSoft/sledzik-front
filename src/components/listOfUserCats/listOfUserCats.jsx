@@ -67,7 +67,7 @@ export function ListOfUserCats () {
               console.log(err)}
       }
       fetchData();
-      }, );
+      }, []);
 
       return responseData.map(item => <CatContener key={item.id}>
       <CatName>{item.catName}</CatName>

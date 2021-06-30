@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
 import { Footer } from "../../components/footer/footer";
 import { Navbar } from "../../components/navbar/navbar";
@@ -14,6 +14,7 @@ import { ListOfUserCats } from  '../../components/listOfUserCats/listOfUserCats'
 
 
 import axios from "axios";
+import {AppContext} from "../../AppContext";
 
 // const Title = styled.h1`
 // font-weight: 900;
@@ -45,6 +46,7 @@ width: 100%;
 export function UserPage() {
 
 
+  const {logedUserName} = useContext(AppContext)
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
   const apiUrl = "http://localhost:3000/";
 
@@ -69,56 +71,14 @@ export function UserPage() {
   const addHidAndName = (e) => {
     e.preventDefault();
     setFormVisibility(true)
-
-    // axios
-    //   .post(apiUrl, {
-    //     hid: data.hid,
-    //     catName: data.catName,
-    //   })
-    //   .then((res) => {
-    //     console.log(res)
-        // console.log( 'w then')
-        // console.log(res.data)
-        // responseFromLogin = res.data;
-        // console.log( 'po zapisaniu')
-        // console.log(responseFromLogin)
-
-
-         // if(res.data.error === "Invalid login data!"){
-         //     setWrongPassMessage(true)}
-         // else if(res.data.ok){
-         //     const {ok, userName} = res.data
-         //     userLoginHandler(ok);
-         //     userNameHandler(userName)
-         //
-         //     history.push('/usersettings')
-         // }
-
-        //  console.log('res data to')
-        // console.log(res)
-        // console.log('teraz2 ok')
-        // console.log(ok)
-        // console.log('teraz3 un')
-        // console.log(userName)
-      // });
+  console.log(data)
+    axios
+      .post(`${apiUrl}user/addhid`, {
+        hid: data.hid,
+        catName: data.catName,
+        name: logedUserName,
+      })
   };
-
-
-// const ListOfUserCats = () => {
-//     const [responseData, setResponseData] = useState([]);
-//
-//     useEffect( async () =>{
-//       try {
-//         const res = await axios.get(`${apiUrl}user/hids/${logedUserName}`)
-//         setResponseData(res.data);
-//       }catch(err){
-//       console.log(err)}
-//       }, []);
-//
-//       return responseData.map(item => <div>{item.catName}</div>)
-//   }
-
-
 
   return (
     <PageContainer>
