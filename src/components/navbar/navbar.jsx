@@ -6,7 +6,7 @@ import { Button } from "../button/button";
 import { Marginer } from "../marginer";
 
 import { useMediaQuery } from "react-responsive";
-import { deviceSize } from "../../components/responsive/responsive";
+import { deviceSize } from "../responsive/responsive";
 import {AppContext} from "../../AppContext";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ const AccessibilityContainer = styled.div`
 `;
 
 const AnchorLink = styled(Link)`
-  font-size: 17;
+  font-size: 17px;
   color: #fff;
   cursor: pointer;
   text-decoration: none;
@@ -83,7 +83,7 @@ const logoutHandler= () =>{
           </Button>
         </Link>
         <Marginer direction="horizontal" margin={20} />
-        <AnchorLink to="/" onClick={(e) => logoutHandler()}>Wyloguj</AnchorLink>
+        <AnchorLink to="/" onClick={() => logoutHandler()}>Wyloguj</AnchorLink>
         <Marginer direction="horizontal" margin={20} />
       </AccessibilityContainer>
              :

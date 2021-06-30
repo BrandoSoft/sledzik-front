@@ -8,7 +8,6 @@ import {
 } from "../../components/PageContainer";
 import { deviceSize } from "../../components/responsive/responsive";
 
-// import { TopSection } from "./topSection";
 
 // const Title = styled.h1`
 // font-weight: 900;
@@ -24,10 +23,16 @@ const ContentContainer = styled.div`
   padding: 1em;
 `;
 
+const HidAndCatsContainer = styled.div`
+  width: 80%;
+  min-height: 5%;
+  background-color: ;
+`
+
 export function UserPage() {
   return (
     <PageContainer>
-        <Navbar useTransparent />
+        <Navbar/>
       <InnerPageContainer>
         {'asdasdasdasd'}
       </InnerPageContainer>

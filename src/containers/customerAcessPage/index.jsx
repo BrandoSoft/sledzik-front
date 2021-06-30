@@ -14,7 +14,7 @@ const StyledInnerContainer = styled(InnerPageContainer)`
   margin-top: 4em;
 `;
 
-export function CustomerAccessPage(props) {
+export function CustomerAccessPage() {
   const { action } = useParams();
 
 
