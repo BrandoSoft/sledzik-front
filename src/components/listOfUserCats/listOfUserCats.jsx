@@ -8,24 +8,48 @@ const CatContener = styled.div`
 display: flex;
 height: auto;
 width: 30%;
-border: 2px solid black;
-background-color: deeppink;
+//border: 2px solid black;
+//background-color: deeppink;
+justify-content: space-between;
 `
 
 const CatName = styled.div`
-display: flex;
-width: 150px;
-  background-color: #312;
+width: 50%;
+border: none;
+outline: none;
+color: #fff;
+padding: 10px 1em;
+font-weight: 700;
+border-radius: 5px;
+background-color: #326295;
+margin: 5px;
+
+cursor: pointer;
+transition: all 200ms ease-in-out;
+
+&:hover{
+    background-color: #fff;
+    color: #326295;
+}
+
+&:focus {
+    outline: none;
+}
 
 `
 const CatHid = styled.div`
-display: flex;
-width: 100px;
-  background-color: #665456;
+width: 30%;
+border: none;
+outline: none;
+color: #fff;
+padding: 10px 1em;
+font-weight: 700;
+border-radius: 5px;
+background-color: #326295;
+align-items: center;
+justify-content: center;
+margin: 5px;
 `
-
-
-
 
 export function ListOfUserCats () {
 

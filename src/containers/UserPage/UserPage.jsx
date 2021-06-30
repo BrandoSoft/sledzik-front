@@ -24,7 +24,7 @@ const ContentContainer = styled.div`
   width: 100%;
   max-width: ${deviceSize.laptop}px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   padding: 1em;
   border: 2px solid black;
@@ -32,6 +32,7 @@ const ContentContainer = styled.div`
 
 const HidAndCatsContainer = styled.div`
   width: 80%;
+  display: flex;  
   min-height: 50px;
   border: 2px solid pink;  
 `
