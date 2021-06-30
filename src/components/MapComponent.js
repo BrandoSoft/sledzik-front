@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { TileLayer, MapContainer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
@@ -52,7 +52,6 @@ const MapComponent = () => {
   };
   const center = { lat: cords[0].lat, lng: cords[0].lng };
 
-  const mapRef = useRef();
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -60,7 +59,7 @@ const MapComponent = () => {
         center={center}
         zoom={13}
         scrollWheelZoom={false}
-        ref={mapRef}
+
       >
         <TileLayer
           url={osm.maptiler.url}
