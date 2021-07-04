@@ -10,6 +10,8 @@ import { deviceSize } from "../../components/responsive/responsive";
 import {useMediaQuery} from "react-responsive";
 import {FormContainer, Input, SubmitButton} from "../../components/accountBox/common";
 
+
+
 import { ListOfUserCats } from  '../../components/listOfUserCats/listOfUserCats'
 
 
@@ -50,11 +52,13 @@ export function UserPage() {
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
   const apiUrl = "http://localhost:3000/";
 
+
   const [formVisibility, setFormVisibility] = useState(true)
   const [data, setData] = useState({
     hid: "",
     catName: "",
   });
+
 
   const formVisibilityHandler = () =>{
   setFormVisibility(false)
@@ -78,6 +82,7 @@ export function UserPage() {
         catName: data.catName,
         name: logedUserName,
       })
+
   };
 
   return (
@@ -86,7 +91,7 @@ export function UserPage() {
     <InnerPageContainer>
       <ContentContainer>
         <FlexRowContainer>
-          <ListOfUserCats />
+          <ListOfUserCats/>
         </FlexRowContainer>
         <HidAndCatsContainer>
           {formVisibility &&

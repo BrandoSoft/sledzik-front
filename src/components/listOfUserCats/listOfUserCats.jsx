@@ -37,7 +37,21 @@ transition: all 200ms ease-in-out;
 }
 
 `
+
 const CatHid = styled.div`
+width: 30%;
+border: none;
+outline: none;
+color: #fff;
+padding: 10px 1em;
+font-weight: 700;
+border-radius: 5px;
+background-color: #326295;
+align-items: center;
+justify-content: center;
+margin: 5px;
+`
+const DelCat = styled.button`
 width: 30%;
 border: none;
 outline: none;
@@ -57,6 +71,9 @@ export function ListOfUserCats () {
     const apiUrl = "http://localhost:3000/";
 
     const [responseData, setResponseData] = useState([]);
+    const [compUpdate, setCompUpdate] = useState('1');
+
+
 
     useEffect(() =>{
       async function fetchData() {
@@ -67,11 +84,26 @@ export function ListOfUserCats () {
               console.log(err)}
       }
       fetchData();
-      }, []);
+      }, [compUpdate]);
 
-      return responseData.map(item => <CatContener key={item.id}>
+    const deleteCatHandler = (e)=>{
+
+        console.log(e)
+
+        axios.delete(`${apiUrl}user/deletecat/${e}`)
+
+
+        setCompUpdate('9')
+    }
+
+console.log(compUpdate)
+
+
+
+    return responseData.map(item => <CatContener key={item.id}>
       <CatName>{item.catName}</CatName>
       <CatHid>{item.hid}</CatHid>
+      <DelCat onClick={()=>deleteCatHandler(item.id)}>Usuń</DelCat>
       </CatContener>)
   }
 

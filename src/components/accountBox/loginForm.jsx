@@ -33,6 +33,7 @@ export function LoginForm(props) {
 
   const {userLoginHandler,userNameHandler,} = useContext(AppContext)
   const [wrongPassMessage, setWrongPassMessage] = useState(false)
+
   const loginHandler = (e) => {
     e.preventDefault();
 
@@ -47,11 +48,7 @@ export function LoginForm(props) {
         setData({
         email: '',
         pwd:''})
-        // console.log( 'w then')
-        // console.log(res.data)
-        // responseFromLogin = res.data;
-        // console.log( 'po zapisaniu')
-        // console.log(responseFromLogin)
+
 
 
          if(res.data.error === "Invalid login data!"){
@@ -61,28 +58,18 @@ export function LoginForm(props) {
              userLoginHandler(ok);
              userNameHandler(userName)
 
+             console.log(userName)
+
              history.push('/usersettings')
          }
 
-        //  console.log('res data to')
-        // console.log(res)
-        // console.log('teraz2 ok')
-        // console.log(ok)
-        // console.log('teraz3 un')
-        // console.log(userName)
 
 
        }
       });
   };
 
-  // const logoutHandler = (e) => {
-  //   e.preventDefault();
-  //
-  //   axios.get("http://localhost:3000/auth/logout").then((res) => {
-  //     console.log(res);
-  //   });
-  // };
+
 
   return (
     <BoxContainer>
