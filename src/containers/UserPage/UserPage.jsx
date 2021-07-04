@@ -9,6 +9,7 @@ import {
 import { deviceSize } from "../../components/responsive/responsive";
 import {useMediaQuery} from "react-responsive";
 import {FormContainer, Input, SubmitButton} from "../../components/accountBox/common";
+import {MapComponent} from '../../components/MapComponent'
 
 
 
@@ -49,6 +50,8 @@ export function UserPage() {
 
 
   const {logedUserName} = useContext(AppContext)
+  const {coordsData} = useContext(AppContext)
+
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
   const apiUrl = "http://localhost:3000/";
 
@@ -121,7 +124,8 @@ export function UserPage() {
             </FormContainer>
           }
         </HidAndCatsContainer>
-      </ContentContainer>
+        </ContentContainer>
+      <MapComponent koordynaty={coordsData}/>
     </InnerPageContainer>
     <Footer />
     </PageContainer>

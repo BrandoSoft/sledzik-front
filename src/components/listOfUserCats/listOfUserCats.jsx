@@ -73,6 +73,8 @@ export function ListOfUserCats () {
     const [responseData, setResponseData] = useState([]);
     const [compUpdate, setCompUpdate] = useState('1');
 
+    const {coordsHandler} = useContext(AppContext)
+
 
 
     useEffect(() =>{
@@ -96,12 +98,24 @@ export function ListOfUserCats () {
         setCompUpdate('9')
     }
 
-console.log(compUpdate)
+    const loadCatCoords = async (e) =>{
+        try{
+            const res = await axios.get(`${apiUrl}coords/${e}`)
+            console.log(res)
+           coordsHandler(res.data)
+
+
+        }catch (err){
+            console.log(err)
+        }
+    }
+
+
 
 
 
     return responseData.map(item => <CatContener key={item.id}>
-      <CatName>{item.catName}</CatName>
+      <CatName onClick={() => loadCatCoords(item.hid)}>{item.catName}</CatName>
       <CatHid>{item.hid}</CatHid>
       <DelCat onClick={()=>deleteCatHandler(item.id)}>Usuń</DelCat>
       </CatContener>)

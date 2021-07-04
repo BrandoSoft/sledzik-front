@@ -6,7 +6,8 @@ import osm from "../osm-providers";
 import "leaflet/dist/leaflet.css";
 import CatPaw from "../icons/pawprint.png";
 
-const MapComponent = () => {
+
+export const MapComponent = (props) => {
   const cords = [
     {
       id: 1,
@@ -34,6 +35,23 @@ const MapComponent = () => {
     },
   ];
 
+  const newCoords = [];
+  props.koordynaty.forEach(item =>{
+    // console.log(item)
+    let cos = {};
+    cos.id =item.id;
+    cos.time = item.date
+    cos.lat = parseFloat(item.latitude);
+    cos.lng = parseFloat(item.longitude);
+
+    console.log(cos)
+
+    newCoords.push(cos)
+
+    console.log(newCoords)
+  })
+
+
   const catPaw = L.icon({
     iconUrl: CatPaw,
 
@@ -44,7 +62,7 @@ const MapComponent = () => {
     popupAnchor: [-3, -75], // point from which the popup should open relative to the iconAnchor
   });
   const Markers = () => {
-    return cords.map((item) => (
+    return newCoords.map((item) => (
       <Marker position={[item.lat, item.lng]} icon={catPaw} key={item.id}>
         <Popup>Kot był tutaj o godzinie {item.time}</Popup>
       </Marker>
@@ -53,19 +71,19 @@ const MapComponent = () => {
   const center = { lat: cords[0].lat, lng: cords[0].lng };
 
 
+
+
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <MapContainer
         center={center}
         zoom={13}
         scrollWheelZoom={false}
-
       >
         <TileLayer
           url={osm.maptiler.url}
           attribution={osm.maptiler.attribution}
         />
-
         <Markers />
       </MapContainer>
     </div>
