@@ -1,5 +1,5 @@
 import React from "react";
-import { TileLayer, MapContainer, Marker, Popup } from "react-leaflet";
+import { TileLayer, MapContainer, Marker, Popup, Polygon } from "react-leaflet";
 import L from "leaflet";
 
 import osm from "../osm-providers";
@@ -46,7 +46,8 @@ export const MapComponent = (props) => {
 
     console.log(cos)
 
-    newCoords.push(cos)
+    setTimeout(newCoords.push(cos), 1000)
+    // newCoords.push(cos)
 
     console.log(newCoords)
   })
@@ -61,6 +62,16 @@ export const MapComponent = (props) => {
     shadowAnchor: [4, 62], // the same for the shadow
     popupAnchor: [-3, -75], // point from which the popup should open relative to the iconAnchor
   });
+
+  const polygon = [
+    [52.20477, 21.06587],
+    [52.20216, 21.05907],
+    [52.20387, 21.06833]
+  ];
+
+  const purpleOptions = { color: 'purple' }
+
+
   const Markers = () => {
     return newCoords.map((item) => (
       <Marker position={[item.lat, item.lng]} icon={catPaw} key={item.id}>
@@ -85,6 +96,7 @@ export const MapComponent = (props) => {
           attribution={osm.maptiler.attribution}
         />
         <Markers />
+        <Polygon pathOptions={purpleOptions} positions={polygon} />
       </MapContainer>
     </div>
   );
