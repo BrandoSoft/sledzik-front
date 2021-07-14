@@ -88,6 +88,18 @@ export function ListOfUserCats () {
       fetchData();
       }, [compUpdate]);
 
+    // const getListOfCatAndHids = async () =>{
+    //     try {
+    //         const res = await axios.get(`${apiUrl}user/hids/${logedUserName}`)
+    //            setResponseData(res.data);
+    //     }catch(err){
+    //                   console.log(err)}
+    // }
+    // useEffect(()=>{
+    //     getListOfCatAndHids()
+    // },)
+
+
     const deleteCatHandler = (e)=>{
 
         console.log(e)
@@ -101,10 +113,10 @@ export function ListOfUserCats () {
     const loadCatCoords = async (e) =>{
         try{
             const res = await axios.get(`${apiUrl}coords/${e}`)
+            console.log('tutaj')
             console.log(res)
+
            coordsHandler(res.data)
-
-
         }catch (err){
             console.log(err)
         }

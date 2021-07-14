@@ -34,23 +34,27 @@ export const MapComponent = (props) => {
       lng: 21.05907,
     },
   ];
-
+  console.log(props.koordynaty)
   const newCoords = [];
-  props.koordynaty.forEach(item =>{
-    // console.log(item)
-    let cos = {};
-    cos.id =item.id;
-    cos.time = item.date
-    cos.lat = parseFloat(item.latitude);
-    cos.lng = parseFloat(item.longitude);
 
-    console.log(cos)
+  try{
+    if(props.koordynaty){
+      props.koordynaty.forEach(item =>{
 
-    setTimeout(newCoords.push(cos), 1000)
-    // newCoords.push(cos)
+        let cos = {};
+        cos.id =item.id;
+        cos.time = item.date
+        cos.lat = parseFloat(item.latitude);
+        cos.lng = parseFloat(item.longitude);
 
-    console.log(newCoords)
-  })
+        newCoords.push(cos)
+
+      })
+    }
+  }catch (e){
+    console.log(e)
+  }
+
 
 
   const catPaw = L.icon({
