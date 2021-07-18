@@ -71,22 +71,33 @@ export function ListOfUserCats () {
     const apiUrl = "http://localhost:3000/";
 
     const [responseData, setResponseData] = useState([]);
-    const [compUpdate, setCompUpdate] = useState('1');
 
-    const {coordsHandler} = useContext(AppContext)
-
+    const {coordsHandler} = useContext(AppContext);
 
 
-    useEffect(() =>{
-      async function fetchData() {
-          try {
-            const res = await axios.get(`${apiUrl}user/hids/${logedUserName}`)
-            setResponseData(res.data);
-          }catch(err){
-              console.log(err)}
-      }
-      fetchData();
-      }, [compUpdate]);
+
+    // useEffect(() =>{
+    //   async function fetchData() {
+    //       try {
+    //         const res = await axios.get(`${apiUrl}user/hids/${logedUserName}`)
+    //         setResponseData(res.data);
+    //       }catch(err){
+    //           console.log(err)}
+    //   }
+    //   fetchData();
+    //   }, [compUpdate]);
+
+    useEffect(()=>{
+        (async () => {
+            try {
+                const res = await axios.get(`${apiUrl}user/hids/${logedUserName}`)
+                setResponseData(res.data);
+            } catch (err) {
+                console.log(err)
+            }
+        })();
+    },[logedUserName])
+
 
     // const getListOfCatAndHids = async () =>{
     //     try {
@@ -105,25 +116,19 @@ export function ListOfUserCats () {
         console.log(e)
 
         axios.delete(`${apiUrl}user/deletecat/${e}`)
-
-
-        setCompUpdate('9')
     }
 
     const loadCatCoords = async (e) =>{
         try{
             const res = await axios.get(`${apiUrl}coords/${e}`)
-            console.log('tutaj')
-            console.log(res)
+            // console.log('tutaj')
+            // console.log(res)
 
            coordsHandler(res.data)
         }catch (err){
             console.log(err)
         }
     }
-
-
-
 
 
     return responseData.map(item => <CatContener key={item.id}>
