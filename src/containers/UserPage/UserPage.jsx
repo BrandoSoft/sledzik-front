@@ -13,7 +13,7 @@ import {MapComponent} from '../../components/MapComponent'
 
 
 
-import { ListOfUserCats } from  '../../components/listOfUserCats/listOfUserCats'
+import { ListOfUserCats } from './listOfUserCats'
 
 
 import axios from "axios";
@@ -94,7 +94,7 @@ export function UserPage() {
     <InnerPageContainer>
       <ContentContainer>
         <FlexRowContainer>
-          <ListOfUserCats/>
+          <ListOfUserCats logedUserName/>
         </FlexRowContainer>
         <HidAndCatsContainer>
           {formVisibility &&
