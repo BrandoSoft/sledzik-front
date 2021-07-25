@@ -20,6 +20,9 @@ export function LoginForm(props) {
 
   const apiUrl = "http://localhost:3000/auth/login";
 
+
+  const {userLoginHandler,userNameHandler,} = useContext(AppContext)
+  const [wrongPassMessage, setWrongPassMessage] = useState(false)
   const [data, setData] = useState({
     email: "",
     pwd: "",
@@ -29,10 +32,9 @@ export function LoginForm(props) {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
+      console.log('handler w loginie')
+      console.log(newData)
   };
-
-  const {userLoginHandler,userNameHandler,} = useContext(AppContext)
-  const [wrongPassMessage, setWrongPassMessage] = useState(false)
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -58,7 +60,8 @@ export function LoginForm(props) {
              userLoginHandler(ok);
              userNameHandler(userName)
 
-             console.log(userName)
+             console.log(`username po zalogowaniu, przekazany do appContextu: ${userName}`)
+
 
              history.push('/usersettings')
          }

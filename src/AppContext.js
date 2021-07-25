@@ -1,12 +1,12 @@
 import React, {createContext, useState} from "react";
 
 
-export const AppContext = createContext();
+export const AppContext = createContext(null);
 
 const AppProvider = ({children}) =>{
 
     const [isUserLogged, setIsUserLogged] = useState(false);
-    const [logedUserName, setLogedUserName ] = useState('test2')
+    const [logedUserName, setLogedUserName ] = useState('')
     const [coordsData, setCoordsData] = useState([])
 
     const userLoginHandler = (value) => setIsUserLogged(value);
