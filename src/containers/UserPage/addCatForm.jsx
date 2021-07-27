@@ -7,8 +7,7 @@ import {deviceSize} from "../../components/responsive/responsive";
 
 export function AddCatForm(props) {
     const isMobile = useMediaQuery({maxWidth: deviceSize.mobile});
-    // const apiUrl = "http://localhost:3000/";
-    const [data, setData] = useState({
+      const [data, setData] = useState({
         hid: "",
         catName: "",
     });
@@ -17,8 +16,7 @@ export function AddCatForm(props) {
         const newData = {...data};
         newData[e.target.id] = e.target.value;
         setData(newData);
-        console.log('handler w catform')
-        console.log(newData)
+
     };
 
     // const addHidAndName = (e) => {
@@ -33,9 +31,15 @@ export function AddCatForm(props) {
     //         })
     // };
 
-    const funkcjajakas = e => {
+    const transferUpCatHidAndName = e => {
         e.preventDefault();
-        props.funkcja(data)
+        props.passCatInfo(data);
+
+        setData({
+            hid: "",
+            catName: "",
+        })
+
     }
 
 
@@ -56,7 +60,7 @@ export function AddCatForm(props) {
                 placeholder="Podaj imie Kotka"
             />
             <SubmitButton size={15} marginLeft={isMobile ? 1 : 10} width={120}
-            onClick={(e)=> funkcjajakas(e)}
+            onClick={(e)=> transferUpCatHidAndName(e)}
             >
                 Dodaj Kotka
             </SubmitButton>

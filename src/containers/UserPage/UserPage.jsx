@@ -47,12 +47,27 @@ export function UserPage() {
             console.log(err)
         }
     }
-    const odbieranie = e => {
+    const getCatInfo = async e => {
         console.log('odbieramy z komponentu')
-        console.log(e)
+        console.log(e.hid)
+        try {
+            const res = await axios.get(`${apiUrl}user/hids/${logedUserName}`)
+
+            if (res.data.some( i => i.hid.includes(e.hid))) {
+                alert(`Kot o Hardware ID ( ${e.hid} ) już istnieje`);
+            } else {
+                axios
+                    .post(`${apiUrl}user/addhid`, {
+                        hid: e.hid,
+                        catName: e.catName,
+                        name: logedUserName,
+                    })
+                    .then(() => getListOfCats())
+            }
+        } catch (err) {
+            throw new Error(err)
+        }
     }
-
-
     return (
         <PageContainer>
             <Navbar/>
@@ -60,7 +75,7 @@ export function UserPage() {
             <InnerPageContainer>
                 <ListOfUserCats listOfCats={responseData} delCat={deleteCatHandler} loadCatCoords={loadCatCoords}/>
                 <MapComponent catCoords={coordsData}/>
-                <AddCatForm funkcja={odbieranie}/>
+                <AddCatForm passCatInfo={getCatInfo}/>
             </InnerPageContainer>
             }
             {!isUserLogged &&
