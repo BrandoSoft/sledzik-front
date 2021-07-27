@@ -7,7 +7,7 @@ import {deviceSize} from "../../components/responsive/responsive";
 
 export function AddCatForm(props) {
     const isMobile = useMediaQuery({maxWidth: deviceSize.mobile});
-      const [data, setData] = useState({
+    const [data, setData] = useState({
         hid: "",
         catName: "",
     });
@@ -33,12 +33,18 @@ export function AddCatForm(props) {
 
     const transferUpCatHidAndName = e => {
         e.preventDefault();
-        props.passCatInfo(data);
+
+        if (Number(data.hid) && data.catName.length >0) {
+            props.passCatInfo(data);
+        } else {
+            alert(`Hardware ID musi być Liczbą, a kot Musi mieć imię!`)
+        }
 
         setData({
             hid: "",
             catName: "",
         })
+
 
     }
 
@@ -60,7 +66,7 @@ export function AddCatForm(props) {
                 placeholder="Podaj imie Kotka"
             />
             <SubmitButton size={15} marginLeft={isMobile ? 1 : 10} width={120}
-            onClick={(e)=> transferUpCatHidAndName(e)}
+                          onClick={(e) => transferUpCatHidAndName(e)}
             >
                 Dodaj Kotka
             </SubmitButton>
