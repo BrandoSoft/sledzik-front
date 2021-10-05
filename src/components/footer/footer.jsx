@@ -111,11 +111,11 @@ export function Footer(props) {
           <FLink>F.A.Q.</FLink>
         </ContentContainer>
         <ContentContainer>
-          <Title>Moje konto</Title>
-          <FLink>Logowanie</FLink>
-          <FLink>HujeMuje</FLink>
-          <FLink>Rude</FLink>
-          <FLink>Węże</FLink>
+          <Title>Logowanie</Title>
+          <FLink>Will</FLink>
+          <FLink>Add</FLink>
+          <FLink>Some</FLink>
+          <FLink>Later</FLink>
         </ContentContainer>
       </TopContainer>
       <BottomContainer>
