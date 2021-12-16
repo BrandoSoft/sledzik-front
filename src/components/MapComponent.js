@@ -76,15 +76,16 @@ export const MapComponent = (props) => {
             </Marker>
         ));
     };
-    const center = {lat: cords[0].lat, lng: cords[0].lng};
 
+    const center = newCoords.length >0? {lat: newCoords[0].lat, lng: newCoords[0].lng} : {lat: cords[0].lat, lng: cords[0].lng};
+    console.log('center to',center)
 
     return (
         <div style={{width: "100%", height: "100%"}}>
             <MapContainer
                 center={center}
                 zoom={13}
-                scrollWheelZoom={false}
+                scrollWheelZoom={true}
             >
                 <TileLayer
                     url={osm.maptiler.url}

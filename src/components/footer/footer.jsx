@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BrandLogo } from "../brandLogo";
 
 import { useMediaQuery } from "react-responsive";
-import { deviceSize } from "../../components/responsive/responsive";
+import { deviceSize } from "../responsive/responsive";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -15,8 +15,7 @@ const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2em 3em;
-  padding-bottom: 0;
+  padding: 2em 3em 0;
   border-top: 0.6px solid rgb(0, 0, 0, 0.3);
 
   @media screen and (max-width: ${deviceSize.mobile}px) {
@@ -57,8 +56,7 @@ const LeftBottomContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  margin: 0;
-  margin-bottom: 13px;
+  margin: 0 0 13px;
   color: #000;
   font-weight: 600;
   font-size: 20px;
@@ -78,10 +76,8 @@ const FLink = styled.a`
 const PrivacyText = styled.h6`
   color: #a3a3a3;
   font-size: 11px;
-  margin: 0;
-  margin-left: 10px;
   display: flex;
-  margin-top: 5px;
+  margin: 5px 0 0 10px;
   align-items: center;
 `;
 
@@ -98,7 +94,7 @@ const SocialIcon = styled.div`
   }
 `;
 
-export function Footer(props) {
+export function Footer() {
   const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
   return (
     <FooterContainer>
