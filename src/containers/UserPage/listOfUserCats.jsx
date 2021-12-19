@@ -6,10 +6,12 @@ import { AppContext } from "../../AppContext";
 
 const ListContainer = styled.div`
   width: 50%;
+  margin-top: 30px;
 `
 
 const CatContener = styled.div`
   display: flex;
+  
   height: auto;
   width: 100%;
   justify-content: space-between;
@@ -117,13 +119,6 @@ export function ListOfUserCats(props) {
         </ListContainer>
     )
 
-
-    // return listOfCats.map(item =>
-    //     <CatContener key={item.id}>
-    //         <CatName onClick={() => loadCatCoords(item.hid)}>{item.catName}</CatName>
-    //         <CatHid>{item.hid}</CatHid>
-    //         <DelCat onClick={() => delCat(item.id)}>Usuń</DelCat>
-    //     </CatContener>)
 
 
 }

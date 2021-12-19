@@ -1,15 +1,61 @@
-import React from "react";
-import {TileLayer, MapContainer, Marker, Popup} from "react-leaflet";
+import React, { useState } from "react";
+import { TileLayer, MapContainer, Marker, Popup, Polygon } from "react-leaflet";
 import L from "leaflet";
 
 import osm from "../osm-providers";
 import "leaflet/dist/leaflet.css";
 import CatPaw from "../icons/pawprint.png";
+import styled from "styled-components";
 
+
+const DisplayButton = styled.button`
+  width: 30%;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 10px 1em;
+  font-weight: 700;
+  border-radius: 5px;
+  background-color: #326295;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    background-color: #fff;
+    color: #326295;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`
+
+const MapWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  flex-wrap: wrap;
+`
+const ControlDiv = styled.div`
+  display: flex;
+  width: 100%;
+   align-items: center;
+  justify-content: center;
+  margin: 5px;
+`
 
 export const MapComponent = (props) => {
-    const {catCoords} = props;
+const {catCoords, position } = props;
+    console.log('poss', props.position)
+    const [display, setDisplay] = useState('polygon');
 
+    /// paw section
     const cords = [
         {
             id: 1,
@@ -72,29 +118,71 @@ export const MapComponent = (props) => {
     const Markers = () => {
         return newCoords.map((item) => (
             <Marker position={[item.lat, item.lng]} icon={catPaw} key={item.id}>
-                <Popup>Kot był tutaj o godzinie {item.time}</Popup>
+                <Popup>Kot był tutaj: {item.time}</Popup>
             </Marker>
         ));
     };
 
-    const center = newCoords.length >0? {lat: newCoords[0].lat, lng: newCoords[0].lng} : {lat: cords[0].lat, lng: cords[0].lng};
-    console.log('center to',center)
+      // end of paw section
 
-    return (
-        <div style={{width: "100%", height: "100%"}}>
-            <MapContainer
-                center={center}
-                zoom={13}
-                scrollWheelZoom={true}
-            >
-                <TileLayer
-                    url={osm.maptiler.url}
-                    attribution={osm.maptiler.attribution}
-                />
-                <Markers/>
-            </MapContainer>
-        </div>
-    );
+    // polygon section
+    const newPolygon = [];
+
+    props.catCoords.forEach(item => {
+        const tempItem = [Number(item.latitude), Number(item.longitude)]
+        newPolygon.push(tempItem)
+    })
+    const purpleOptions = { color: 'purple' }
+    // end of polygon section
+
+    const center = {
+        lat: cords[0].lat,
+        lng: cords[0].lng
+    }
+
+    if (display === 'paws') {
+        return (
+            <MapWrapper>
+                <ControlDiv>
+                    <DisplayButton onClick={() => setDisplay('paws')}>Dokładne info</DisplayButton>
+                    <DisplayButton onClick={() => setDisplay('polygon')}>Teren Łowiecki </DisplayButton>
+                </ControlDiv>
+                <MapContainer
+                    center={center}
+                    zoom={13}
+                    scrollWheelZoom={true}
+                >
+                    <TileLayer
+                        url={osm.maptiler.url}
+                        attribution={osm.maptiler.attribution}
+                    />
+                    <Markers/>
+                </MapContainer>
+            </MapWrapper>
+        )
+    }
+    if (display === 'polygon') {
+        return (
+            <MapWrapper>
+                <ControlDiv>
+                    <DisplayButton onClick={() => setDisplay('paws')}>Dokładne info</DisplayButton>
+                    <DisplayButton onClick={() => setDisplay('polygon')}>Teren Łowiecki </DisplayButton>
+                </ControlDiv>
+                <MapContainer
+                    center={center}
+                    zoom={13}
+                    scrollWheelZoom={true}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Polygon pathOptions={purpleOptions} positions={newPolygon}/>
+                </MapContainer>
+            </MapWrapper>
+
+        );
+    }
+
 };
 
 export default MapComponent;

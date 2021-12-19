@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Footer } from "../../components/footer/footer";
-import MapComponent from "../../components/MapComponent";
 import { Marginer } from "../../components/marginer";
 import { Navbar } from "../../components/navbar/navbar";
 import {
@@ -12,6 +11,8 @@ import { deviceSize } from "../../components/responsive/responsive";
 import { SpecialistAdd } from "../../components/specialistAdd/specialistAdd";
 import { Services } from "./services";
 import { TopSection } from "./topSection";
+import  Slider from "../../components/slider/Slider";
+import {SliderData} from '../../components/slider/SliderData'
 
 // const Title = styled.h1`
 // font-weight: 900;
@@ -34,7 +35,9 @@ export function HomePage(props) {
         <Navbar useTransparent />
       </TopSection>
       <InnerPageContainer>
-        <MapComponent />
+          <Marginer direction="vertical" margin="4em" />
+        <Slider slides={SliderData}/>
+          <Marginer direction="vertical" margin="4em" />
         <ContentContainer>
           <Services />
         </ContentContainer>

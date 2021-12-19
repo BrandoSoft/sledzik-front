@@ -10,7 +10,6 @@ import axios from "axios";
 import { AppContext } from "../../AppContext";
 import { ListOfUserCats } from "./listOfUserCats";
 import MapComponent from "../../components/MapComponent";
-import { AddCatForm } from "./addCatForm";
 
 
 export function UserPage() {
@@ -54,6 +53,7 @@ export function UserPage() {
     }, [isUserLogged])
 
 
+
     return (
         <PageContainer>
             <Navbar/>
@@ -65,7 +65,6 @@ export function UserPage() {
                     loadCatCoords={loadCatCoords}
                     catCoords={coordsData}
                 />
-                {/*<AddCatForm data={responseData}/>*/}
                 <MapComponent catCoords={coordsData}/>
             </InnerPageContainer>
             }
