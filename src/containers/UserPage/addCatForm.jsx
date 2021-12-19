@@ -1,46 +1,44 @@
 import React, { useContext, useState } from "react";
-import {FormContainer, Input, SubmitButton} from "../../components/accountBox/common";
+import { FormContainer, Input, SubmitButton } from "../../components/accountBox/common";
 // import axios from "axios";
-import {useMediaQuery} from "react-responsive";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {deviceSize} from "../../components/responsive/responsive";
+import { useMediaQuery } from "react-responsive";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { deviceSize } from "../../components/responsive/responsive";
 import axios from "axios";
 import { AppContext } from "../../AppContext";
 
 
 export function AddCatForm(props) {
-
     const apiUrl = "http://localhost:3000/";
-    const {logedUserName} = useContext(AppContext);
-    console.log(logedUserName)
+    const { logedUserName } = useContext(AppContext);
+    // console.log('add cat w props', props.data)
 
-    const isMobile = useMediaQuery({maxWidth: deviceSize.mobile});
+    const isMobile = useMediaQuery({ maxWidth: deviceSize.mobile });
     const [data, setData] = useState({
         hid: "",
         catName: "",
     });
 
     const onChangeHandler = (e) => {
-        const newData = {...data};
+        const newData = { ...data };
         newData[e.target.id] = e.target.value;
         setData(newData);
-
     };
 
-    console.log('data z propsu',props.data)
 
-
-
-    const addCatToDb = async (e) =>{
+    const addCatToDb = async (e) => {
         e.preventDefault()
 
-        if (Number(data.hid) && data.catName.length >0) {
+        const respData = await axios.get(`${apiUrl}user/hids/${logedUserName}`);
+
+
+        if (Number(data.hid) && data.catName.length > 0) {
             try {
 
-                if (props.data.some( i => i.hid.includes(data.hid))) {
+                if (respData.data.some(i => i.hid.includes(data.hid))) {
                     alert(`Kot o Hardware ID ( ${data.hid} ) już istnieje`);
                 } else {
-                    axios
+                    await axios
                         .post(`${apiUrl}user/addhid`, {
                             hid: data.hid,
                             catName: data.catName,
@@ -60,6 +58,7 @@ export function AddCatForm(props) {
             catName: "",
         })
         props.rerender()
+
     }
 
 

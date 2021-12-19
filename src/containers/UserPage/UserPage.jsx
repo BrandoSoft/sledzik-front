@@ -15,25 +15,24 @@ import { AddCatForm } from "./addCatForm";
 
 export function UserPage() {
 
-    const { logedUserName, isUserLogged, coordsHandler, coordsData } = useContext(AppContext);
-
-    console.log({ logedUserName, isUserLogged, coordsHandler, coordsData })
-
     const apiUrl = "http://localhost:3000/";
 
+    const { logedUserName, isUserLogged, coordsHandler, coordsData } = useContext(AppContext);
+
+    // console.log({ logedUserName, isUserLogged, coordsHandler, coordsData })
+
     const [responseData, setResponseData] = useState([]);
-    const [renderList, setRenderList] = useState();
-    console.log('przed useefect ', responseData);
+
 
     const getListOfCats = () => {
-        console.log('name zalogowanego', logedUserName)
+
         axios.get(`${apiUrl}user/hids/${logedUserName}`)
             .then(response => setResponseData(response.data));
     }
 
     const loadCatCoords = async (e) => {
         try {
-            console.log('czym jest e?', e)
+
             const res = await axios.get(`${apiUrl}coords/${e}`)
             coordsHandler(res.data)
         } catch (err) {
@@ -55,14 +54,18 @@ export function UserPage() {
     }, [isUserLogged])
 
 
-
     return (
         <PageContainer>
             <Navbar/>
             {isUserLogged &&
             <InnerPageContainer>
-                <ListOfUserCats listOfCats={responseData} delCat={deleteCatHandler} loadCatCoords={loadCatCoords}/>
-                <AddCatForm data={responseData} rerender={getListOfCats}/>
+                <ListOfUserCats
+                    // listOfCats={responseData}
+                    delCat={deleteCatHandler}
+                    loadCatCoords={loadCatCoords}
+                    catCoords={coordsData}
+                />
+                {/*<AddCatForm data={responseData}/>*/}
                 <MapComponent catCoords={coordsData}/>
             </InnerPageContainer>
             }
