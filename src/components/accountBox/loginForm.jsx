@@ -18,7 +18,7 @@ export function LoginForm(props) {
   let history = useHistory()
   const { switchToSignup } = useContext(AccountContext);
 
-  const apiUrl = process.env.REACT_APP_API_LOCAL;
+  const apiUrl = process.env.REACT_APP_API;
 
 
   const {userLoginHandler,userNameHandler,} = useContext(AppContext)
@@ -32,8 +32,7 @@ export function LoginForm(props) {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
-      console.log('handler w loginie')
-      console.log(newData)
+
   };
 
   const loginHandler = (e) => {
@@ -41,7 +40,7 @@ export function LoginForm(props) {
 
 
     axios
-      .post(apiUrl, {
+      .post(`${apiUrl}auth/login`, {
         email: data.email,
         pwd: data.pwd,
       })
@@ -59,9 +58,6 @@ export function LoginForm(props) {
              const {ok, userName} = res.data
              userLoginHandler(ok);
              userNameHandler(userName)
-
-             console.log(`username po zalogowaniu, przekazany do appContextu: ${userName}`)
-
 
              history.push('/usersettings')
          }

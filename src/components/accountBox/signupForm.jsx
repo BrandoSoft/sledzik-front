@@ -18,7 +18,7 @@ export function SignupForm() {
   const { switchToSignin } = useContext(AccountContext);
 
 
-    const apiUrl = process.env.REACT_APP_API_LOCAL;
+    const apiUrl = process.env.REACT_APP_API;
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -30,7 +30,7 @@ export function SignupForm() {
     e.preventDefault();
 
     axios
-      .post(apiUrl, {
+      .post(`${apiUrl}user/register`, {
         name: data.name,
         email: data.email,
         pwd: data.pwd,

@@ -10,7 +10,7 @@ import { AppContext } from "../../AppContext";
 
 
 export function AddCatForm(props) {
-    const apiUrl = process.env.REACT_APP_API_LOCAL
+    const apiUrl = process.env.REACT_APP_API
     const { logedUserName } = useContext(AppContext);
     // console.log('add cat w props', props.data)
 

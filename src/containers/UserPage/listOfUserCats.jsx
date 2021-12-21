@@ -77,7 +77,7 @@ const DelCat = styled.button`
 
 export function ListOfUserCats(props) {
 
-    const apiUrl = process.env.REACT_APP_API_LOCAL;
+    const apiUrl = process.env.REACT_APP_API;
 
     const { logedUserName } = useContext(AppContext);
 

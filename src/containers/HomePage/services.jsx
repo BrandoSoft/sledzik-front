@@ -60,7 +60,7 @@ const StyledLink = styled(Link)`
 
 
 export function Services() {
-    const apiUrl = process.env.REACT_APP_API_LOCAL;
+    const apiUrl = process.env.REACT_APP_API;
     const { logedUserName, isUserLogged } = useContext(AppContext);
 
     const [responseData, setResponseData] = useState([]);

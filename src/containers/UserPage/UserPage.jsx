@@ -14,7 +14,7 @@ import MapComponent from "../../components/MapComponent";
 
 export function UserPage() {
 
-    const apiUrl = process.env.REACT_APP_API_LOCAL;
+    const apiUrl = process.env.REACT_APP_API;
 
     const { logedUserName, isUserLogged, coordsHandler, coordsData } = useContext(AppContext);
 
