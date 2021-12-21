@@ -8,6 +8,7 @@ import AppProvider from "./AppContext";
 
 
 const App = () => {
+console.log('api to',process.env.REACT_APP_API_LOCAL)
 
   return (
     <div>

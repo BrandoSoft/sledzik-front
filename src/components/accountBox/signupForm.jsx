@@ -18,7 +18,7 @@ export function SignupForm() {
   const { switchToSignin } = useContext(AccountContext);
 
 
-  const apiUrl = "http://localhost:3000/user/register";
+    const apiUrl = process.env.REACT_APP_API_LOCAL;
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -57,7 +57,7 @@ export function SignupForm() {
           id="name"
           value={data.name}
           type="text"
-          placeholder="Name"
+          placeholder="Imię"
         />
         <Input
           onChange={(e) => onChangeHandler(e)}
@@ -70,10 +70,10 @@ export function SignupForm() {
           onChange={(e) => onChangeHandler(e)}
           id="pwd"
           value={data.pwd}
-          type="text"
-          placeholder="Password"
+          type="password"
+          placeholder="Hasło"
         />
-        <Input type="password" placeholder="Confirm Password" />
+        <Input type="password" placeholder="Potwierdz HAsło" />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <SubmitButton type="submit" onClick={(e) => registerHandler(e)}>

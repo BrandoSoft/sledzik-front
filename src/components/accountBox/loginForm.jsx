@@ -18,7 +18,7 @@ export function LoginForm(props) {
   let history = useHistory()
   const { switchToSignup } = useContext(AccountContext);
 
-  const apiUrl = "http://localhost:3000/auth/login";
+  const apiUrl = process.env.REACT_APP_API_LOCAL;
 
 
   const {userLoginHandler,userNameHandler,} = useContext(AppContext)

@@ -77,7 +77,7 @@ const DelCat = styled.button`
 
 export function ListOfUserCats(props) {
 
-    const apiUrl = "http://localhost:3000/";
+    const apiUrl = process.env.REACT_APP_API_LOCAL;
 
     const { logedUserName } = useContext(AppContext);
 

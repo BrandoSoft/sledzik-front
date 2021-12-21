@@ -60,7 +60,7 @@ const StyledLink = styled(Link)`
 
 
 export function Services() {
-    const apiUrl = "http://localhost:3000/";
+    const apiUrl = process.env.REACT_APP_API_LOCAL;
     const { logedUserName, isUserLogged } = useContext(AppContext);
 
     const [responseData, setResponseData] = useState([]);
