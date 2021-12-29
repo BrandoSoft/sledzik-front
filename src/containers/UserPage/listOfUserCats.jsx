@@ -104,7 +104,7 @@ export function ListOfUserCats(props) {
         <CatContener key={item.id}>
             <CatName onClick={() => loadCatCoords(item.hid)}>{item.catName}</CatName>
             <CatHid>{item.hid}</CatHid>
-            <DelCat onClick={() => delCat(item.id)}>Usuń</DelCat>
+            <DelCat onClick={() => delCat(item)}>Usuń</DelCat>
         </CatContener>)
 
     return (
