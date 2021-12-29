@@ -12,6 +12,9 @@ import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import axios from "axios";
 import {AppContext} from "../../AppContext";
+import styled from "styled-components";
+
+
 
 export function LoginForm(props) {
 
@@ -71,6 +74,7 @@ export function LoginForm(props) {
 
 
   return (
+
     <BoxContainer>
     {!wrongPassMessage? '' : 'Email lub hasło nieprawidłowe. Spróbuj jeszcze raz'}
       <Marginer direction="horizonstal" margin="1.6em" />
@@ -107,5 +111,6 @@ export function LoginForm(props) {
         </BoldLink>
       </MutedLink>
     </BoxContainer>
+
   );
 }

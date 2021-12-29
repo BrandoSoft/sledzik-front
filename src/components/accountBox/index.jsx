@@ -76,6 +76,26 @@ const InnerContainer = styled.div`
   padding: 0 1.8em;
 `;
 
+const MiniModal = styled.div`
+position: absolute;
+  top: 10%;
+  right: 2%;
+  width: 300px;
+  //height: 200px;
+  background-color: #326295;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  
+  p{
+    display: flex;
+    color: #fff;
+    margin: 5px auto;
+    padding: 10px;
+  }
+`
+
+
 const backdropVariants = {
   expanded: {
     width: "233%",
@@ -130,6 +150,11 @@ console.log(initialActive)
 
   return (
     <AccountContext.Provider value={contextValue}>
+<MiniModal>
+  <p>Zarejestruj się lub użyj testowych danych:</p>
+  <p>test@test.pl</p>
+  <p>12345</p>
+</MiniModal>
       <BoxContainer>
         <TopContainer>
           <BackDrop
